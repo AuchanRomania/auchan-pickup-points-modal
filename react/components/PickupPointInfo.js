@@ -15,6 +15,9 @@ import UnavailableMarker from '../assets/components/UnavailableMarker'
 import SearchMarkerIcon from '../assets/components/SearchMarkerIcon'
 import BestMarkerIcon from '../assets/components/BestMarkerIcon'
 import { getCleanId } from '../utils/StateUtils'
+import clickCollectIcon from '../assets/icons/clickCollectIcon.svg'
+import locationIcon from '../assets/icons/locationIcon.svg'
+
 
 const { AddressSummary } = components
 
@@ -26,14 +29,14 @@ class PickupPointInfo extends Component {
 
     this.state = {
       unavailableItemsAmount: getUnavailableItemsAmount(
-        props.items,
-        props.logisticsInfo,
-        props.pickupPoint.id,
-        props.sellerId
+          props.items,
+          props.logisticsInfo,
+          props.pickupPoint.id,
+          props.sellerId
       ),
       info:
-        (props.pickupPoint && props.pickupPoint.pickupStoreInfo) ||
-        props.pickupPoint,
+          (props.pickupPoint && props.pickupPoint.pickupStoreInfo) ||
+          props.pickupPoint,
       distance: props.pickupPoint.pickupDistance || props.pickupPoint.distance,
     }
   }
@@ -42,17 +45,17 @@ class PickupPointInfo extends Component {
     if (this.props.pickupPoint.id !== prevProps.pickupPoint.id) {
       this.setState({
         unavailableItemsAmount: getUnavailableItemsAmount(
-          this.props.items,
-          this.props.logisticsInfo,
-          this.props.pickupPoint.id,
-          this.props.sellerId
+            this.props.items,
+            this.props.logisticsInfo,
+            this.props.pickupPoint.id,
+            this.props.sellerId
         ),
         info:
-          (this.props.pickupPoint && this.props.pickupPoint.pickupStoreInfo) ||
-          this.props.pickupPoint,
+            (this.props.pickupPoint && this.props.pickupPoint.pickupStoreInfo) ||
+            this.props.pickupPoint,
         distance:
-          this.props.pickupPoint.pickupDistance ||
-          this.props.pickupPoint.distance,
+            this.props.pickupPoint.pickupDistance ||
+            this.props.pickupPoint.distance,
       })
     }
   }
@@ -81,8 +84,8 @@ class PickupPointInfo extends Component {
   }
 
   handlePickupModal = () =>
-    this.props.onClickPickupModal &&
-    this.props.onClickPickupModal(this.props.liPackage)
+      this.props.onClickPickupModal &&
+      this.props.onClickPickupModal(this.props.liPackage)
 
   handleKeyDown = (evt) => {
     if (evt.key === 'Enter' || evt.keyCode === 13) {
@@ -116,112 +119,112 @@ class PickupPointInfo extends Component {
     const sholdShowSearchMarker = isList && !pickupPoint.pickupStoreInfo
     const shouldShowEstimate = pickupPoint && pickupPoint.shippingEstimate
     const isBestPickupPointAndAvailable =
-      pickupPoint.pickupStoreInfo &&
-      (isBestPickupPoint || (isSelectedBestPickupPoint && !isList))
+        pickupPoint.pickupStoreInfo &&
+        (isBestPickupPoint || (isSelectedBestPickupPoint && !isList))
 
     const shouldShowUnavailableAmount =
-      unavailableItemsAmount !== items.length &&
-      unavailableItemsAmount > 0 &&
-      !sholdShowSearchMarker
+        unavailableItemsAmount !== items.length &&
+        unavailableItemsAmount > 0 &&
+        !sholdShowSearchMarker
 
     const shouldShowAllUnavailable =
-      unavailableItemsAmount === items.length && !sholdShowSearchMarker
+        unavailableItemsAmount === items.length && !sholdShowSearchMarker
 
     return (
-      <div
-        className={`${styles.pickupPoint} pkpmodal-pickup-point`}
-        id={pickupId}
-        onClick={this.handleOpenPickupDetails}
-        role="link"
-        tabIndex={0}
-        onKeyDown={this.handleKeyDown}
-      >
         <div
-          className={`${styles.pickupPointMain} pkpmodal-pickup-point-main`}
-          onMouseLeave={this.handlePickupLeave}
-          onMouseEnter={this.handlePickupEnter}
+            className={`${styles.pickupPoint} pkpmodal-pickup-point`}
+            id={pickupId}
+            onClick={this.handleOpenPickupDetails}
+            role="link"
+            tabIndex={0}
+            onKeyDown={this.handleKeyDown}
         >
           <div
-            className={`${
-              shouldUseMaps
-                ? styles.pickupPointMarker
-                : styles.pickupPointMarkerPostalCode
-            } pkpmodal-pickup-point-marker`}
+              className={`${styles.pickupPointMain} pkpmodal-pickup-point-main`}
+              onMouseLeave={this.handlePickupLeave}
+              onMouseEnter={this.handlePickupEnter}
           >
-            {sholdShowUnavailableMarker && <UnavailableMarker />}
-            {sholdShowSearchMarker && <SearchMarkerIcon />}
-            {isBestPickupPointAndAvailable && <BestMarkerIcon />}
-            {!sholdShowSearchMarker &&
-              !sholdShowUnavailableMarker &&
-              !isBestPickupPointAndAvailable && <PinIcon />}
-            {distance && (
-              <p
-                className={`${styles.pickupPointDistance} pkpmodal-pickup-point-distance`}
-              >
-                {translate(intl, 'distance', {
-                  distanceValue:
-                    distance > MAX_KILOMETERS ? '1000+' : distanceValue,
-                })}
-              </p>
-            )}
-          </div>
-          <div
-            className={`${styles.pickupPointInfo} pkpmodal-pickup-point-info`}
-          >
-            <p
-              className={`${styles.pickupPointName} pkpmodal-pickup-point-name`}
-            >
-              {info.friendlyName}
-            </p>
             <div
-              className={`${
-                styles.pickupPointAddress
-              } pkpmodal-pickup-point-address ${isList ? 'list' : ''}`}
+                className={`${
+                    shouldUseMaps
+                        ? styles.pickupPointMarker
+                        : styles.pickupPointMarkerPostalCode
+                } pkpmodal-pickup-point-marker`}
             >
-              <AddressSummary
-                address={info.address}
-                onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
-                rules={selectedRules}
-              />
+              {sholdShowUnavailableMarker && <UnavailableMarker />}
+              {sholdShowSearchMarker && <SearchMarkerIcon />}
+              {isBestPickupPointAndAvailable && <BestMarkerIcon />}
+              {!sholdShowSearchMarker &&
+                  !sholdShowUnavailableMarker &&
+                  !isBestPickupPointAndAvailable && <PinIcon />}
             </div>
-
-            {shouldShowAllUnavailable && (
-              <span
-                className={`${styles.pickupPointNoneAvailable} pkpmodal-pickup-point-available`}
+            <div
+                className={`${styles.pickupPointInfo} pkpmodal-pickup-point-info`}
+            >
+              <p
+                  className={`${styles.pickupPointName} pkpmodal-pickup-point-name`}
               >
+                {info.friendlyName}
+              </p>
+              <div
+                  className={`${
+                      styles.pickupPointAddress
+                  } pkpmodal-pickup-point-address ${isList ? 'list' : ''}`}
+              >
+                <AddressSummary
+                    address={info.address}
+                    onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
+                    rules={selectedRules}
+                />
+              </div>
+
+              {shouldShowAllUnavailable && (
+                  <span
+                      className={`${styles.pickupPointNoneAvailable} pkpmodal-pickup-point-available`}
+                  >
                 {translate(intl, 'noneItemsAvailable')}
               </span>
-            )}
+              )}
 
-            {shouldShowUnavailableAmount && (
-              <span
-                className={`${styles.pickupPointAvailability} pkpmodal-pickup-point-availability`}
-              >
+              {shouldShowUnavailableAmount && (
+                  <span
+                      className={`${styles.pickupPointAvailability} pkpmodal-pickup-point-availability`}
+                  >
                 {translate(intl, 'unavailableItemsAmount', {
                   itemsAmount: unavailableItemsAmount,
                 })}
               </span>
-            )}
+              )}
+              {distance && (
+                  <p className={`${styles.pickupPointDistance} pkpmodal-pickup-point-distance`}>
+                    <img src={locationIcon} alt="Location Icon" />
+                    {translate(intl, 'distance', {
+                      distanceValue: distance > MAX_KILOMETERS ? '1000+' : distanceValue,
+                    })}
+                  </p>
+              )}
 
-            {unavailableItemsAmount === 0 && (
-              <span
-                className={`${styles.pickupPointAllAvailable} pkpmodal-pickup-point-available`}
-              >
-                {translate(intl, 'allItemsAvailable')}
-              </span>
-            )}
+              {unavailableItemsAmount === 0 && (
+                  <div className={`${styles.pickupPointAvailabilityContainer}`}>
+                    <img src={clickCollectIcon} alt="Click & Collect Icon" />
+                    <span className={`${styles.pickupPointAllAvailable} pkpmodal-pickup-point-available`}>
+                    {translate(intl, 'allItemsAvailable')}
+                  </span>
+                  </div>
+              )}
+
+            </div>
           </div>
-        </div>
-        {pickupPoint.pickupStoreInfo && (
-          <div
-            className={`${
-              shouldUseMaps
-                ? styles.pickupPointSlaAvailability
-                : styles.pickupPointSlaAvailabilityPostalCode
-            } pkpmodal-pickup-point-sla-availability`}
-          >
+          {pickupPoint.pickupStoreInfo && (
+              <div
+                  className={`${
+                      shouldUseMaps
+                          ? styles.pickupPointSlaAvailability
+                          : styles.pickupPointSlaAvailabilityPostalCode
+                  } pkpmodal-pickup-point-sla-availability`}
+              >
             <span
-              className={`${styles.pickupPointPrice} pkpmodal-pickup-point-price`}
+                className={`${styles.pickupPointPrice} pkpmodal-pickup-point-price`}
             >
               {translate(intl, 'price', {
                 value: pickupPoint && pickupPoint.price,
@@ -231,19 +234,19 @@ class PickupPointInfo extends Component {
                 }),
               })}
             </span>
-            {shouldShowEstimate && (
-              <span
-                className={`${styles.pickupPointSla} pkpmodal-pickup-point-sla`}
-              >
+                {shouldShowEstimate && (
+                    <span
+                        className={`${styles.pickupPointSla} pkpmodal-pickup-point-sla`}
+                    >
                 <TranslateEstimate
-                  shippingEstimate={pickupPoint && pickupPoint.shippingEstimate}
-                  isPickup
+                    shippingEstimate={pickupPoint && pickupPoint.shippingEstimate}
+                    isPickup
                 />
               </span>
-            )}
-          </div>
-        )}
-      </div>
+                )}
+              </div>
+          )}
+        </div>
     )
   }
 }

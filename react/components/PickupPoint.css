@@ -28,6 +28,10 @@
   width: 96px;
 }
 
+.pickupPointInfo img {
+  margin-right: 5px;
+}
+
 /* marker */
 
 .pickupPointMarker,
@@ -40,9 +44,10 @@
 /* distance */
 
 .pickupPointDistance {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1;
   margin: 4px 0 0;
+  font-weight: 500;
 }
 
 /* name */
@@ -69,7 +74,6 @@
 
 .pickupPointSlaAvailability,
 .pickupPointSlaAvailabilityPostalCode {
-  border-top: 1px solid #f4f4f4;
   padding: 8px 8px 8px 60px;
 }
 
@@ -108,6 +112,10 @@
 
   .pickupPointMarkerPostalCode {
     width: 100px;
+  }
+
+  .pickupPointPrice {
+    margin-bottom: 1rem !important;
   }
 }
 

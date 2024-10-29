@@ -13,8 +13,37 @@
   display: flex;
   flex-shrink: 0;
   flex-grow: 0;
-  height: 67px;
   margin-bottom: 1px;
+}
+
+.modalDetailsTopTitle {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.modalDetailsTopTitle h2 {
+  font-size: 20px;
+  line-height: 24px;
+  padding-top: 2rem;
+}
+
+.modalDetailsTopTitle button.modalDetailsBackLnk {
+  color: #ED002E;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.modalDetailsTopTitle svg {
+  transform: rotate(180deg);
+  position: relative;
+  left: 0;
+  bottom: 2px;
+}
+
+.modalDetailsTopTitle .modalDetailsBackLnk svg path {
+  fill: #ED002E;
 }
 
 .modalDetailsMiddle {
@@ -50,10 +79,18 @@
 
 .modalDetailsInfo {
   padding: 15px;
+  -webkit-border-radius: 0px 0px .75rem .75rem;
+  border-radius: 0px 0px .75rem .75rem;
+  border: 1px solid #D6E1EC;
+  border-top: 0;
 }
 
 .modalDetailsGroup {
   margin-bottom: 20px;
+  border-top: 1px solid #D6E1EC;
+  padding-top: 1.5rem;
+  border-bottom: 1px solid #D6E1EC;
+  padding-bottom: 1rem;
 }
 
 .modalDetailsInfoTitle {
