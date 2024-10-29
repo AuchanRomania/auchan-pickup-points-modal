@@ -5,8 +5,17 @@
 }
 
 .modalDetailsHours td {
-  border-bottom: 1px solid #f2f4f5;
   padding-top: 6px;
+}
+
+.modalDetailsHours tr {
+  color: #3C617F;
+  font-size: 14px;
+}
+
+.modalDetailsHours .modalDetailsHoursRange {
+  color: #02182B;
+  font-weight: 500;
 }
 
 .modalDetailsHoursRange,

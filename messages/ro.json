@@ -6,7 +6,7 @@
   "pickupPointsModal.cancelBackList": "Vezi toate punctele de ridicare",
   "pickupPointsModal.slaOption": "{name} - {price} - {shippingEstimate}",
   "pickupPointsModal.free": "Gratuit",
-  "pickupPointsModal.selectPickupPoint": "Alege un punct de ridicare",
+  "pickupPointsModal.selectPickupPoint": "Alege punctul de ridicare",
   "pickupPointsModal.pointDetails": "Alege opțiunile de ridicare",
   "pickupPointsModal.closeButton": "închide",
   "pickupPointsModal.list": "Listă",
@@ -14,7 +14,7 @@
   "pickupPointsModal.pickupPoint.modify": "Modifică",
   "pickupPointsModal.details": "Vezi detalii sau schimbă punctul de ridicare.",
   "pickupPointsModal.searchLocationMap": "Caută după stradă, cod poștal, oraș sau județ",
-  "pickupPointsModal.productsInPoint": "Disponibilitate produse în acest punct de ridicare",
+  "pickupPointsModal.productsInPoint": "Disponibilitate produse",
   "pickupPointsModal.aditionalInfo": "Alte informații",
   "pickupPointsModal.unavailable": "indisponibil",
   "pickupPointsModal.unavailableItemsAmount": "{itemsAmount, plural, =0 {} one {# produs indisponibil} other {# produse indisponibile}}",
@@ -58,6 +58,7 @@
   "pickupPointsModal.backToSearch": "Înapoi la căutare",
   "pickupPointsModal.searchArea": "Caută în această zonă",
   "pickupPointsModal.showPickupPointsList": "Vezi toate punctele de ridicare",
+  "pickupPointsModal.pickPickupPoint": "Alege punctul de ridicare",
   "pickupPointsModal.bestResults": "Cele mai bune rezultate",
   "pickupPointsModal.resultsOrderedByDistance": "Rezultatele sortate după distanță"
 }

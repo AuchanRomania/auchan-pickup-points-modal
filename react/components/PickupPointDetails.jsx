@@ -27,16 +27,16 @@ class PickupPointDetails extends Component {
 
     this.state = {
       unavailableItems: getUnavailableItemsByPickup(
-        props.items,
-        props.logisticsInfo,
-        props.selectedPickupPoint,
-        props.sellerId
+          props.items,
+          props.logisticsInfo,
+          props.selectedPickupPoint,
+          props.sellerId
       ),
       items: getItemsWithPickupPoint(
-        props.items,
-        props.logisticsInfo,
-        props.selectedPickupPoint,
-        props.sellerId
+          props.items,
+          props.logisticsInfo,
+          props.selectedPickupPoint,
+          props.sellerId
       ),
       pickupPointInfo: this.getPickupInfo(props),
     }
@@ -66,16 +66,16 @@ class PickupPointDetails extends Component {
     if (prevProps.selectedPickupPoint.id !== props.selectedPickupPoint.id) {
       this.setState({
         unavailableItems: getUnavailableItemsByPickup(
-          props.items,
-          props.logisticsInfo,
-          props.selectedPickupPoint,
-          props.sellerId
+            props.items,
+            props.logisticsInfo,
+            props.selectedPickupPoint,
+            props.sellerId
         ),
         items: getItemsWithPickupPoint(
-          props.items,
-          props.logisticsInfo,
-          props.selectedPickupPoint,
-          props.sellerId
+            props.items,
+            props.logisticsInfo,
+            props.selectedPickupPoint,
+            props.sellerId
         ),
         pickupPointInfo: this.getPickupInfo(props),
       })
@@ -84,8 +84,8 @@ class PickupPointDetails extends Component {
 
   getPickupInfo = (props) => {
     return props.pickupPoints.find(
-      (pickupPoint) =>
-        pickupPoint.id === props.selectedPickupPoint.pickupPointId
+        (pickupPoint) =>
+            pickupPoint.id === props.selectedPickupPoint.pickupPointId
     )
   }
 
@@ -106,9 +106,9 @@ class PickupPointDetails extends Component {
 
   handleConfirmButtonClick = () => {
     updateShippingData(
-      this.props.residentialAddress,
-      this.props.logisticsInfo,
-      this.props.selectedPickupPoint
+        this.props.residentialAddress,
+        this.props.logisticsInfo,
+        this.props.selectedPickupPoint
     )
 
     pickupPointConfirmationEvent()
@@ -131,143 +131,113 @@ class PickupPointDetails extends Component {
     const { unavailableItems, items, pickupPointInfo } = this.state
 
     const businessHours =
-      !pickupPointInfo ||
-      !pickupPointInfo.businessHours ||
-      pickupPointInfo.businessHours.length === 0
-        ? null
-        : pickupPointInfo.businessHours
+        !pickupPointInfo ||
+        !pickupPointInfo.businessHours ||
+        pickupPointInfo.businessHours.length === 0
+            ? null
+            : pickupPointInfo.businessHours
 
     const hasAditionalInfo =
-      selectedPickupPoint.pickupStoreInfo &&
-      selectedPickupPoint.pickupStoreInfo.additionalInfo
+        selectedPickupPoint.pickupStoreInfo &&
+        selectedPickupPoint.pickupStoreInfo.additionalInfo
 
     const shouldShowSelectPickupButton =
-      selectedPickupPoint && selectedPickupPoint.pickupStoreInfo
+        selectedPickupPoint && selectedPickupPoint.pickupStoreInfo
 
     const confirmButtonId =
-      selectedPickupPoint &&
-      `confirm-pickup-${selectedPickupPoint.id
-        .replace(/[^\w\s]/gi, '')
-        .split(' ')
-        .join('-')}`
+        selectedPickupPoint &&
+        `confirm-pickup-${selectedPickupPoint.id
+            .replace(/[^\w\s]/gi, '')
+            .split(' ')
+            .join('-')}`
 
     const pickupIndex =
-      bestPickupOptions &&
-      bestPickupOptions
-        .map((pickupPoint) => pickupPoint.id || pickupPoint.pickupPointId)
-        .indexOf(selectedPickupPoint.id || selectedPickupPoint.pickupPointId)
+        bestPickupOptions &&
+        bestPickupOptions
+            .map((pickupPoint) => pickupPoint.id || pickupPoint.pickupPointId)
+            .indexOf(selectedPickupPoint.id || selectedPickupPoint.pickupPointId)
 
     const isFirst = pickupIndex === 0
     const isLast =
-      bestPickupOptions && pickupIndex === bestPickupOptions.length - 1
+        bestPickupOptions && pickupIndex === bestPickupOptions.length - 1
 
     return (
-      <div className={`${styles.modalDetails} pkpmodal-details`}>
-        <div className={`${styles.modalDetailsTop} pkpmodal-details-top`}>
-          <button
-            className={`${styles.modalDetailsBackLnk} pkpmodal-details-back-lnk btn btn-link`}
-            onClick={this.handleBackButtonClick}
-            type="button"
-          >
-            <BackChevron />
-            {translate(intl, 'cancelBackList')}
-          </button>
-        </div>
-
-        <div
-          className={`${styles.pickupDetailsHeader} pkpmodal-details-header`}
-        >
-          <p
-            className={`${styles.pickupDetailsHeaderTitle} pkpmodal-details-header-title`}
-          >
-            {translate(intl, 'pointDetails')}
-          </p>
-          <div
-            className={`${styles.pickupDetailsHeaderButtons} pkpmodal-details-header-buttons`}
-          >
-            <button
-              data-testid="goToPreviousPickupPoint"
-              className={`${styles.pickupDetailsHeaderButton} ${
-                isFirst ? styles.firstOrLast : ''
-              } pkpmodal-details-header-button`}
-              onClick={() => this.props.selectPreviousPickupPoint()}
-            >
-              <ArrowPrevious />
-            </button>
-            <button
-              data-testid="goToNextPickupPoint"
-              className={`${styles.pickupDetailsHeaderButton} ${
-                isLast ? styles.firstOrLast : ''
-              } pkpmodal-details-header-button`}
-              onClick={() => this.props.selectNextPickupPoint()}
-            >
-              <ArrowNext />
-            </button>
-          </div>
-        </div>
-
-        <div className={`${styles.modalDetailsMiddle} pkpmodal-details-middle`}>
-          <div className={`${styles.modalDetailsStore} pkpmodal-details-store`}>
-            <PickupPointInfo
-              shouldUseMaps={shouldUseMaps}
-              isSelected={isSelectedSla}
-              items={this.props.items}
-              logisticsInfo={logisticsInfo}
-              pickupPoint={selectedPickupPoint}
-              selectedRules={selectedRules}
-              sellerId={sellerId}
-              storePreferencesData={storePreferencesData}
-            />
-          </div>
-
-          <div className={`${styles.modalDetailsInfo} pkpmodal-details-info`}>
-            <div
-              className={`${styles.modalDetailsGroup} pkpmodal-details-group`}
-            >
-              <h3
-                className={`${styles.modalDetailsInfoTitle} title pkpmodal-details-info-title`}
+        <div className={`${styles.modalDetails} pkpmodal-details`}>
+          <div className={`${styles.modalDetailsTop} pkpmodal-details-top`}>
+            <div className={`${styles.modalDetailsTopTitle} pkpmodal-details-top-title`}>
+              <h2>{intl.formatMessage({id: 'pickupPointsModal.pickPickupPoint'})}</h2>
+              <button
+                  className={`${styles.modalDetailsBackLnk} pkpmodal-details-back-lnk btn btn-link`}
+                  onClick={this.handleBackButtonClick}
+                  type="button"
               >
-                {translate(intl, 'productsInPoint')}
-              </h3>
-              {items && <ProductItems items={items} />}
-              {unavailableItems && (
-                <ProductItems isAvailable={false} items={unavailableItems} />
-              )}
+                {translate(intl, 'cancelBackList')}
+                <BackChevron/>
+              </button>
             </div>
-            {hasAditionalInfo && (
-              <div
-                className={`${styles.modalDetailsGroup} pkpmodal-details-group`}
-              >
-                <h3
-                  className={`${styles.modalDetailsInfoTitle} pkpmodal-details-info-title`}
+          </div>
+
+          <div className={`${styles.modalDetailsMiddle} pkpmodal-details-middle`}>
+            <div className={`${styles.modalDetailsStore} pkpmodal-details-store`}>
+              <PickupPointInfo
+                  shouldUseMaps={shouldUseMaps}
+                  isSelected={isSelectedSla}
+                  items={this.props.items}
+                  logisticsInfo={logisticsInfo}
+                  pickupPoint={selectedPickupPoint}
+                  selectedRules={selectedRules}
+                  sellerId={sellerId}
+                  storePreferencesData={storePreferencesData}
+              />
+              <div className={`${styles.modalDetailsInfo} pkpmodal-details-info`}>
+                <div
+                    className={`${styles.modalDetailsGroup} pkpmodal-details-group`}
                 >
-                  {translate(intl, 'aditionalInfo')}
-                </h3>
-                {selectedPickupPoint.pickupStoreInfo.additionalInfo}
+                  <h3
+                      className={`${styles.modalDetailsInfoTitle} title pkpmodal-details-info-title`}
+                  >
+                    {translate(intl, 'productsInPoint')}
+                  </h3>
+                  {items && <ProductItems items={items}/>}
+                  {unavailableItems && (
+                      <ProductItems isAvailable={false} items={unavailableItems}/>
+                  )}
+                </div>
+                {hasAditionalInfo && (
+                    <div
+                        className={`${styles.modalDetailsGroup} pkpmodal-details-group`}
+                    >
+                      <h3
+                          className={`${styles.modalDetailsInfoTitle} pkpmodal-details-info-title`}
+                      >
+                        {translate(intl, 'aditionalInfo')}
+                      </h3>
+                      {selectedPickupPoint.pickupStoreInfo.additionalInfo}
+                    </div>
+                )}
+
+                {businessHours && (
+                    <PickupBusinessHours businessHours={businessHours}/>
+                )}
               </div>
-            )}
-
-            {businessHours && (
-              <PickupBusinessHours businessHours={businessHours} />
-            )}
+            </div>
           </div>
+
+          {shouldShowSelectPickupButton && (
+              <div
+                  className={`${styles.modalDetailsBottom} pkpmodal-details-bottom`}
+              >
+                <Button
+                    id={confirmButtonId}
+                    kind="primary"
+                    large
+                    moreClassName={`${styles.modalDetailConfirmBtn} pkpmodal-details-confirm-btn`}
+                    onClick={this.handleConfirmButtonClick}
+                    title={translate(intl, 'confirmPoint')}
+                />
+              </div>
+          )}
         </div>
-
-        {shouldShowSelectPickupButton && (
-          <div
-            className={`${styles.modalDetailsBottom} pkpmodal-details-bottom`}
-          >
-            <Button
-              id={confirmButtonId}
-              kind="primary"
-              large
-              moreClassName={`${styles.modalDetailConfirmBtn} pkpmodal-details-confirm-btn`}
-              onClick={this.handleConfirmButtonClick}
-              title={translate(intl, 'confirmPoint')}
-            />
-          </div>
-        )}
-      </div>
     )
   }
 }
