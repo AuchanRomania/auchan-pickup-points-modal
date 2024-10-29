@@ -1,7 +1,7 @@
 {
   "name": "pickup-points-modal",
   "vendor": "auchan",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "title": "Pickup Points Modal React component",
   "description": "Pickup Points Modal React component",
   "defaultLocale": "en",
